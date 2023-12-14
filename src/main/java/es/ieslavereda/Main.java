@@ -6,8 +6,10 @@ public class Main {
     public static void main(String[] args) {
         System.out.println(Palo.TREBOL);
         for (Palo palo: Palo.values()) {
-            System.out.print(palo);
+            System.out.println(palo);
         }
 
+        Baraja baraja = new Baraja();
+        System.out.println(baraja);
     }
 }
