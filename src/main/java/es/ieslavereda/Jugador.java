@@ -16,12 +16,33 @@ public class Jugador {
     public String getNombre_jugador() {
         return nombre_jugador;
     }
-    public int getPuntuacion(){
+/*    public int getPuntuacion(){
         int puntos = 0;
         for (Carta carta:mano) {
             puntos = puntos+carta.getNumero().getValor()[0];
         }
-        return puntos;
+        return (puntos>21?-1:puntos);
+    }*/
+
+    public int getPuntuacion(){
+        return getPuntuacionRecursiva(0,0);
+    }
+
+    private int getPuntuacionRecursiva(int index, int suma){
+        if (suma>21){
+            return -1;
+        }
+        if (index==mano.length){
+            return suma;
+        }
+
+        if (mano[index].getNumero().getValor().length ==1){
+            return getPuntuacionRecursiva(index+1,suma+mano[index].getNumero().getValor()[0]);
+        }
+        return Math.max(
+                getPuntuacionRecursiva(index+1,suma+mano[index].getNumero().getValor()[0]),
+                getPuntuacionRecursiva(index+1,suma+mano[index].getNumero().getValor()[1])
+        );
     }
 
     //Metodos
